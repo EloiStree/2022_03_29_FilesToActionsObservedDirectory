@@ -14,7 +14,7 @@ public class ObserveUniqueFileChangeMono : MonoBehaviour
     public void Start()
     {
         m_observedFile = new FileWriteChangedObserver(m_filePath);
-        if (m_observedFile.IsStillExisting() )
+        if (m_observedFile != null && m_observedFile.IsStillExisting() )
         {
             m_observedFile.UpdateStoreObservedDate();
             NotifyChange();
@@ -23,7 +23,7 @@ public class ObserveUniqueFileChangeMono : MonoBehaviour
 
     private void Update()
     {
-        if (m_observedFile.IsStillExisting() &&  m_observedFile.HasChanged()) {
+        if (m_observedFile!=null && m_observedFile.IsStillExisting() &&  m_observedFile.HasChanged()) {
             m_observedFile.UpdateStoreObservedDate();
             NotifyChange();
         }
